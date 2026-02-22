@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AB Paving – Go Live Guide (Fasthosts)</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --navy: #1a2e4a; --yellow: #f5c800; --grey: #4a5568; --light: #f4f6f9; }
+  body { font-family: system-ui, sans-serif; color: #333; background: var(--light); }
+  .doc { max-width: 860px; margin: 0 auto; background: white; box-shadow: 0 4px 40px rgba(0,0,0,.1); }
+  header { background: var(--navy); padding: 40px 56px; }
+  header h1 { font-size: 28px; font-weight: 900; color: white; margin-bottom: 6px; }
+  header h1 span { color: var(--yellow); }
+  header p { color: rgba(255,255,255,.6); font-size: 14px; }
+  .badge { display:inline-block; background:var(--yellow); color:var(--navy); font-size:11px; font-weight:700; padding:3px 10px; border-radius:2px; text-transform:uppercase; letter-spacing:1px; margin-top:12px; }
+  main { padding: 48px 56px; }
+  section { margin-bottom: 52px; }
+  h2 { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid var(--yellow); display:flex; align-items:center; gap:10px; }
+  .num { width:32px; height:32px; background:var(--yellow); color:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:900; flex-shrink:0; }
+  h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin: 20px 0 10px; }
+  p { font-size: 15px; color: var(--grey); line-height: 1.75; margin-bottom: 12px; }
+  ul, ol { padding-left: 20px; margin-bottom: 12px; }
+  li { font-size: 15px; color: var(--grey); line-height: 1.75; margin-bottom: 6px; }
+  code { background: #f0f2f5; color: #c0392b; padding: 2px 7px; border-radius: 3px; font-size: 13px; font-family: monospace; }
+  .step { background: var(--light); border-left: 4px solid var(--yellow); border-radius: 4px; padding: 18px 22px; margin: 14px 0; }
+  .step strong { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.8px; color:var(--navy); margin-bottom:8px; }
+  .tip { background: #fff8d6; border-left: 4px solid var(--yellow); border-radius: 4px; padding: 14px 18px; margin: 14px 0; font-size: 14px; color: #555; }
+  .tip::before { content: '💡 Tip: '; font-weight: 700; color: var(--navy); }
+  .warn { background: #fff3f3; border-left: 4px solid #e53935; border-radius: 4px; padding: 14px 18px; margin: 14px 0; font-size: 14px; color: #555; }
+  .warn::before { content: '⚠️ Important: '; font-weight: 700; color: #c0392b; }
+  .check { list-style:none; padding:0; }
+  .check li { padding:10px 14px; border-bottom:1px solid #f0f0f0; display:flex; align-items:flex-start; gap:10px; font-size:15px; color:var(--grey); }
+  .check li::before { content:'☐'; font-size:18px; flex-shrink:0; }
+  .highlight { background: var(--navy); color: white; padding: 16px 22px; border-radius: 5px; font-size: 15px; margin: 14px 0; }
+  .highlight strong { color: var(--yellow); }
+  footer { background: var(--navy); padding: 24px 56px; text-align:center; color:rgba(255,255,255,.5); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header>
+  <h1>AB Paving &amp; Landscaping<br><span>Go Live Guide — Fasthosts</span></h1>
+  <p>Step-by-step instructions to get your website live and generating enquiries today.</p>
+  <span class="badge">No tech experience needed</span>
+</header>
+
+<main>
+
+<!-- STEP 0: BEFORE YOU START -->
+<section>
+  <h2><span class="num">✦</span> Before You Start — Do These 3 Things First</h2>
+
+  <h3>1. Set up your Formspree account (free — takes 5 minutes)</h3>
+  <p>Your quote form needs this to actually send enquiries to your email. Without it, form submissions go nowhere.</p>
+  <div class="step">
+    <strong>How to do it</strong>
+    1. Go to <strong>formspree.io</strong> and create a free account<br><br>
+    2. Once logged in, click <strong>+ New Form</strong><br><br>
+    3. Give it a name like "AB Paving Quote Form"<br><br>
+    4. Copy the endpoint URL — it looks like: <code>https://formspree.io/f/abcd1234</code><br><br>
+    5. Open <code>index.html</code> in Notepad (right-click → Open with → Notepad)<br><br>
+    6. Press <strong>Ctrl+F</strong> and search for: <code>YOUR_FORM_ID</code><br><br>
+    7. Replace the whole action URL with your Formspree URL, e.g.:<br>
+    <code>action="https://formspree.io/f/abcd1234"</code><br><br>
+    8. Save the file. Done — every form submission now emails you directly.
+  </div>
+  <div class="tip">Use the same email you check daily. Formspree free plan gives you 50 submissions/month — more than enough to start.</div>
+
+  <h3>2. Update the domain in your sitemap</h3>
+  <p>Open <code>sitemap.xml</code> in Notepad. If your domain is NOT <strong>abpaving.co.uk</strong>, do a Find &amp; Replace (Ctrl+H) and replace <code>abpaving.co.uk</code> with your actual domain. Save it.</p>
+
+  <h3>3. Check your domain is pointed at Fasthosts</h3>
+  <p>If you bought your domain elsewhere (e.g. GoDaddy, 123-reg), you'll need to point the nameservers at Fasthosts before the site will show up. Fasthosts support can help — call them on 0333 0142 700.</p>
+</section>
+
+<!-- STEP 1: UPLOAD -->
+<section>
+  <h2><span class="num">1</span> Upload Your Website to Fasthosts</h2>
+  <p>Fasthosts gives you two ways to upload. <strong>Option A (File Manager) is easiest</strong> — no software to download.</p>
+
+  <h3>Option A — Fasthosts File Manager (recommended)</h3>
+  <div class="step">
+    <strong>Step by step</strong>
+    1. Log in to your Fasthosts control panel at <strong>control.fasthosts.co.uk</strong><br><br>
+    2. Click <strong>Web Hosting</strong> → select your hosting package<br><br>
+    3. Click <strong>File Manager</strong> (in the Files section)<br><br>
+    4. You'll see a folder called <strong>htdocs</strong> or <strong>public_html</strong> — this is your website root. Open it.<br><br>
+    5. Delete any placeholder files already in there (like <code>index.html</code> or <code>index.php</code>)<br><br>
+    6. Click <strong>Upload</strong> and upload all your website files. You need to upload:<br>
+    &nbsp;&nbsp;• All <code>.html</code> files (index.html, about.html, gallery.html etc.)<br>
+    &nbsp;&nbsp;• The <code>css/</code> folder (with style.css, home.css, pages.css inside)<br>
+    &nbsp;&nbsp;• The <code>js/</code> folder (with main.js inside)<br>
+    &nbsp;&nbsp;• The <code>images/</code> folder (with all photos inside)<br>
+    &nbsp;&nbsp;• <code>sitemap.xml</code><br><br>
+    7. Wait for uploads to complete — images may take a couple of minutes
+  </div>
+  <div class="warn">The <code>index.html</code> file must be directly inside <code>htdocs/</code> — NOT inside a subfolder. If it ends up at <code>htdocs/abpaving/index.html</code> your site won't load.</div>
+
+  <h3>Option B — FTP with FileZilla (more control)</h3>
+  <ol>
+    <li>Download <strong>FileZilla</strong> free from filezilla-project.org</li>
+    <li>In your Fasthosts control panel → <strong>FTP &amp; SSH</strong> → note your FTP hostname, username and password</li>
+    <li>Open FileZilla, enter the FTP details at the top, click <strong>Quickconnect</strong></li>
+    <li>On the right side of FileZilla, navigate into <code>htdocs/</code></li>
+    <li>On the left side, find your website files on your computer</li>
+    <li>Select all files and folders and drag them across to the right panel</li>
+    <li>Wait for all transfers to complete</li>
+  </ol>
+  <div class="tip">FTP is better if you have a slow internet connection or are uploading lots of large photos, as it resumes if interrupted.</div>
+</section>
+
+<!-- STEP 2: SSL -->
+<section>
+  <h2><span class="num">2</span> Turn On Free SSL (HTTPS)</h2>
+  <p>SSL makes your site load as <code>https://</code> instead of <code>http://</code>. Google requires this for good rankings and it shows a padlock to visitors — building trust. Fasthosts includes this free.</p>
+  <div class="step">
+    <strong>How to activate SSL on Fasthosts</strong>
+    1. In your Fasthosts control panel, go to <strong>Web Hosting → Manage</strong><br><br>
+    2. Look for <strong>SSL Certificates</strong> or <strong>Free SSL</strong><br><br>
+    3. Click <strong>Install</strong> or <strong>Activate</strong> — it runs automatically<br><br>
+    4. Allow up to 24 hours for the certificate to issue (usually much faster)<br><br>
+    5. Once active, your site loads at <strong>https://yourdomain.co.uk</strong>
+  </div>
+  <div class="tip">If you're unsure, call Fasthosts on 0333 0142 700 and just say "I need to activate the free SSL certificate on my hosting." They'll walk you through it in 2 minutes.</div>
+</section>
+
+<!-- STEP 3: TEST -->
+<section>
+  <h2><span class="num">3</span> Test Your Live Site</h2>
+  <p>Once uploaded, visit your domain and go through this checklist. Tick everything off before you start promoting it.</p>
+  <ul class="check">
+    <li>Homepage loads correctly at your domain</li>
+    <li>Logo appears in the top-left corner</li>
+    <li>All photos load — hero image, service cards, gallery</li>
+    <li>Navigation menu works — click every link</li>
+    <li>Services dropdown appears on hover (desktop)</li>
+    <li>Hamburger menu opens and closes on mobile (test on your phone)</li>
+    <li>Phone number is clickable and dials on mobile</li>
+    <li>Floating "Free Quote – Call Now" button is visible</li>
+    <li>Quote form submits successfully and you receive an email</li>
+    <li>Gallery lightbox opens when you click a photo</li>
+    <li>Gallery filter buttons (All / Driveways / Patios / Landscaping) work</li>
+    <li>All footer links work on every page</li>
+    <li>Site loads as https:// (padlock visible in browser)</li>
+  </ul>
+
+  <h3>If photos aren't loading</h3>
+  <p>Check that the <code>images/</code> folder is directly inside <code>htdocs/</code> and all image files are inside it. File names are case-sensitive on web servers — <code>Hero-Driveway.jpg</code> and <code>hero-driveway.jpg</code> are different files.</p>
+
+  <h3>If the page looks unstyled (plain text)</h3>
+  <p>The <code>css/</code> folder hasn't uploaded correctly. Make sure <code>style.css</code>, <code>home.css</code> and <code>pages.css</code> are all inside a <code>css/</code> folder within <code>htdocs/</code>.</p>
+</section>
+
+<!-- STEP 4: GOOGLE -->
+<section>
+  <h2><span class="num">4</span> Get on Google — This Brings in the Leads</h2>
+  <p>Getting onto Google is far more important than any other marketing. Do these three things in week one.</p>
+
+  <h3>4a. Google Business Profile — do this TODAY</h3>
+  <p>This gets you into Google Maps and the local results panel. Most paving enquiries in Glasgow come from here, not from search results.</p>
+  <div class="step">
+    <strong>Set it up in 20 minutes</strong>
+    1. Go to <strong>business.google.com</strong><br><br>
+    2. Click <strong>Manage now</strong> → search for "AB Paving &amp; Landscaping"<br><br>
+    3. If it doesn't exist, click <strong>Add your business to Google</strong><br><br>
+    4. Business category: choose <strong>Paving Contractor</strong> (add Landscaper as secondary)<br><br>
+    5. Add your full address, phone number, website URL and opening hours<br><br>
+    6. Verify your listing — Google sends a postcard to your address with a code (takes 5–7 days)<br><br>
+    7. Once verified, add photos: at least 10 project photos, your logo and a team photo
+  </div>
+  <div class="tip">Ask every satisfied customer to leave a Google review. Even 10 good reviews will put you above most competitors in Glasgow search results.</div>
+
+  <h3>4b. Google Search Console (free)</h3>
+  <p>This tells Google your site exists and lets you monitor how people find you.</p>
+  <ol>
+    <li>Go to <strong>search.google.com/search-console</strong></li>
+    <li>Click <strong>Add Property</strong> → enter your domain</li>
+    <li>Verify ownership — choose the HTML tag method and paste the code into the <code>&lt;head&gt;</code> section of <code>index.html</code></li>
+    <li>Once verified, click <strong>Sitemaps</strong> in the left menu</li>
+    <li>Enter <code>sitemap.xml</code> and click Submit — this tells Google about all your pages</li>
+  </ol>
+
+  <h3>4c. Request Google to index your site</h3>
+  <p>In Search Console, click <strong>URL Inspection</strong>, paste your homepage URL, and click <strong>Request Indexing</strong>. Repeat for each page. Google usually finds your site within 1–7 days.</p>
+</section>
+
+<!-- STEP 5: NEXT STEPS -->
+<section>
+  <h2><span class="num">5</span> What to Do in the First Month</h2>
+
+  <div class="highlight">
+    <strong>Week 1 priority list:</strong><br>
+    ✓ Site live and tested<br>
+    ✓ Formspree form connected and tested<br>
+    ✓ Google Business Profile created<br>
+    ✓ Share your new site on your Facebook page — "We've just launched our new website!"
+  </div>
+
+  <h3>Getting your first Google reviews (most important)</h3>
+  <p>Call or text every recent customer and ask them to leave a Google review. Send them a direct link — find it in your Google Business Profile dashboard under "Get more reviews." Aim for 10 reviews in your first month. This alone will get you ranking above most Glasgow competitors.</p>
+
+  <h3>Facebook posts that get enquiries</h3>
+  <p>Post 2–3 times per week. The posts that work best are: before &amp; after photos of completed jobs, photos taken during a job showing the team at work, and short videos of a finished driveway or patio. Always end with "Contact us for a free quote" and your phone number.</p>
+
+  <h3>Consider Google Ads in month 2</h3>
+  <p>Once you have a few reviews and your site is indexed, £5–10/day on Google Ads targeting "block paving Glasgow" and "driveway Glasgow" will get you leads almost immediately. It's the fastest way to fill your diary.</p>
+
+  <h3>List on Checkatrade</h3>
+  <p>Your site already mentions Checkatrade as a trust signal. If you're not yet listed, it's worth doing — homeowners in Glasgow specifically search for Checkatrade-approved tradespeople. A listing costs around £70–90/month but typically pays for itself with one job.</p>
+</section>
+
+<!-- QUICK FIXES -->
+<section>
+  <h2><span class="num">✦</span> Making Changes to Your Site Later</h2>
+  <p>The site is built so that one file controls the look of every page. You only need to upload the file you changed — not everything.</p>
+  <ul>
+    <li><strong>To change colours, fonts, nav or footer</strong> → edit <code>css/style.css</code></li>
+    <li><strong>To change homepage layout</strong> → edit <code>css/home.css</code></li>
+    <li><strong>To change service/gallery/about pages</strong> → edit <code>css/pages.css</code></li>
+    <li><strong>To change wording or content</strong> → edit the relevant <code>.html</code> file</li>
+    <li><strong>To swap a photo</strong> → upload a new image to <code>images/</code> using the same filename</li>
+  </ul>
+  <div class="tip">Always keep a backup copy of your site files on your computer. Before making any change, save the original file with a name like <code>index-backup.html</code> so you can restore it if anything goes wrong.</div>
+</section>
+
+</main>
+
+<footer>AB Paving &amp; Landscaping — Go Live Guide · Built for Fasthosts hosting</footer>
+</div>
+</body>
+</html>
